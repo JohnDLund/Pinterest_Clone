@@ -1,0 +1,23 @@
+.btn-primary {
+  color: $light;
+  background-color: $primary;
+  border-color: darken($color: $primary, $amount: 10);
+  border-width: medium;
+}
+
+.iconText {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.borderTrim {
+  -webkit-box-shadow: 0px 0px 5px 5px #000000ff;
+  box-shadow: 0px 0px 5px 5px #000000ff;
+  border: solid thick #fca311ff;
+}
+
+.borderTrim:hover {
+  -webkit-box-shadow: 0px 0px 5px 5px #fca311ff;
+  box-shadow: 0px 0px 5px 5px #fca311ff;
+  border: solid thick #000000ff;
+  transition: 0.4s;
+}
