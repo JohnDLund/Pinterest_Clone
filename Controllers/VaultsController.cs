@@ -24,7 +24,7 @@ namespace Keepr.Controllers
             _vks = vks;
         }
 
-
+        // GETS ALL PUBLIC VAULTS
         [HttpGet]
         public ActionResult<IEnumerable<Vault>> Get()
         {
@@ -38,7 +38,7 @@ namespace Keepr.Controllers
             };
         }
 
-
+        // GETS SINGLE VUALT BY ID
         [HttpGet("{vaultId}")]
         [Authorize]
         public ActionResult<Vault> GetById(int vaultId)
@@ -59,8 +59,7 @@ namespace Keepr.Controllers
             }
         }
 
-
-
+        // GETS ALL VAULTS CREATED BY AUTHENTICATED USER
         [HttpGet("user")]
         public ActionResult<IEnumerable<Vault>> GetByUserId()
         {
@@ -79,7 +78,7 @@ namespace Keepr.Controllers
             }
         }
 
-
+        // GETS ALL KEEPS LINKED TO A SINGLE VAULT
         [HttpGet("{vaultId}" + "/keeps")]
         [Authorize]
         public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int vaultId)
@@ -96,7 +95,7 @@ namespace Keepr.Controllers
             }
         }
 
-
+        // CREATES NEW VAULT
         [HttpPost]
         [Authorize]
         public ActionResult<Vault> Post([FromBody] Vault newVault)
@@ -114,7 +113,7 @@ namespace Keepr.Controllers
         }
 
 
-
+        // DELETES SINGLE VAULT BY ID
         [HttpDelete("{id}")]
         [Authorize]
         public ActionResult<Vault> Delete(int id)

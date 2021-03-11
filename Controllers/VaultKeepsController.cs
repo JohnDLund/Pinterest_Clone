@@ -21,7 +21,7 @@ namespace Keepr.Controllers
             _vks = vks;
         }
 
-
+        // GETS ALL THE RELATIONSHIPS BETWEEN VAULTS AND KEEPS
         [HttpGet]
         public ActionResult<IEnumerable<VaultKeep>> Get()
         {
@@ -35,7 +35,7 @@ namespace Keepr.Controllers
             };
         }
 
-
+        // GETS THE RELATIONSHIP BETWEEN VAULTS AND THEIR KEEPS
         [HttpGet("{vaultKeepId}")]
         public ActionResult<VaultKeep> GetById(int vaultKeepId)
         {
@@ -50,7 +50,7 @@ namespace Keepr.Controllers
         }
 
 
-
+        // ADDS A SINGLE KEEP TO A SINGLE VAULT
         [HttpPost]
         [Authorize]
         public ActionResult<VaultKeep> Post([FromBody] VaultKeep newVaultKeep)
@@ -67,6 +67,7 @@ namespace Keepr.Controllers
             }
         }
 
+        // REMOVES A SINGLE KEEP FROM A SINGLE VAULT BY DELETING RELATIONSHIP
         [HttpDelete("{id}")]
         [Authorize]
         public ActionResult<VaultKeep> Delete(int id)

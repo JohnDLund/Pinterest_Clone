@@ -23,8 +23,7 @@ namespace Keepr.Controllers
             _ks = ks;
         }
 
-
-
+        // GETS ALL PUBLIC KEEPS
         [HttpGet]
         public ActionResult<IEnumerable<Keep>> Get()
         {
@@ -38,23 +37,8 @@ namespace Keepr.Controllers
             }
         }
 
-        [HttpGet("user")]
-        [Authorize]
-        public ActionResult<IEnumerable<Keep>> GetByUserId()
-        {
-            try
-            {
-                Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
-                string userId = user.Value;
 
-                return Ok(_ks.GetByUserId(userId));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
+        // GETS SINGLE KEEP BY ID
         [HttpGet("{keepId}")]
         public ActionResult<Keep> GetById(int keepId)
         {
@@ -75,7 +59,25 @@ namespace Keepr.Controllers
             }
         }
 
+        // GETS ALL KEEPS CREATED BY AUTHENTICATED USER
+        [HttpGet("user")]
+        [Authorize]
+        public ActionResult<IEnumerable<Keep>> GetByUserId()
+        {
+            try
+            {
+                Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+                string userId = user.Value;
 
+                return Ok(_ks.GetByUserId(userId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        // CREATES NEW KEEP
         [HttpPost]
         [Authorize]
         public ActionResult<Keep> Post([FromBody] Keep newKeep)
@@ -92,6 +94,7 @@ namespace Keepr.Controllers
             }
         }
 
+        // DELETES SINGLE KEEP BY ID
         [HttpDelete("{id}")]
         [Authorize]
         public ActionResult<Keep> Delete(int id)
@@ -108,7 +111,7 @@ namespace Keepr.Controllers
             }
         }
 
-
+        // EDITS SINGLES KEEP BY ID
         [HttpPut("{id}")]
         [Authorize]
         public ActionResult<Keep> Edit([FromBody] Keep newKeep, int id)
@@ -129,6 +132,7 @@ namespace Keepr.Controllers
             }
         }
 
+        // GETS USER ID OF AUTHENTICATED USER
         [HttpGet("userId")]
         public ActionResult<string> GetUserId()
         {
